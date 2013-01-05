@@ -1,3 +1,9 @@
+main_route:
+    pattern: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: forms_show
+        permanent: true # this is for 301
 
 forms_show:
     pattern: /forms
