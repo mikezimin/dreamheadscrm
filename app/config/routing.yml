@@ -1,0 +1,49 @@
+
+forms_show:
+    pattern: /forms
+    defaults: { _controller: DreamheadsLeadCRMBundle:Form:showList }
+
+fill_empty_columns:
+    pattern: /temp/fill-empty-columns
+    defaults: { _controller: DreamheadsLeadCRMBundle:Temp:fillEmptyColumns }
+
+fill_empty_columns_2:
+    pattern: /temp/fill-empty-columns-2
+    defaults: { _controller: DreamheadsLeadCRMBundle:Temp:fillEmptyColumns2 }
+
+fill_mask:
+    pattern: /temp/fill-mask
+    defaults: { _controller: DreamheadsLeadCRMBundle:Temp:fillMask }
+
+generate_regions:
+    pattern: /temp/generate-regions
+    defaults: { _controller: DreamheadsLeadCRMBundle:Temp:generateRegions }
+
+generate_operators:
+    pattern: /temp/generate-operators
+    defaults: { _controller: DreamheadsLeadCRMBundle:Temp:generateOperators }
+
+generate_masks:
+    pattern: /temp/generate-masks
+    defaults: { _controller: DreamheadsLeadCRMBundle:Temp:generateMasks }
+
+get_phone_region:
+    pattern: /temp/get-phone-region
+    defaults: { _controller: DreamheadsLeadCRMBundle:Temp:getPhoneRegion }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
+
+dreamheads_lead_crm:
+   resource: "@DreamheadsLeadCRMBundle/Controller/"
+   type:     annotation
+   prefix:   /
+
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
