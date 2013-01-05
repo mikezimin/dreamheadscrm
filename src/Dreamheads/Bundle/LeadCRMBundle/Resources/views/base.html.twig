@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+{% set currentRoute = app.request.attributes.get('_route') %}
+{% set params = app.request.attributes.get('_route_params')|merge(app.request.query.all()) %}
+{% set user = app.security.getToken().getUser() %}
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>{%block title %}Dreamheads CRM{% endblock %}</title>
+<link rel="SHORTCUT ICON" href="" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+
+<!-- JQuery -->
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+
+<!-- EDate -->
+<script src="/s/e.js" type="text/javascript"></script>
+
+<!-- Datepicker -->
+<link rel="stylesheet" href="/css/Aristo/Aristo.css" />
+<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+<body>
+<div class="FixWidth">
+
+<div id="top">
+<div id="logo"><a href="/"><img src="/i/logo.png"></a></div>
+<div id="auth">
+<div id="username">{{ user.email }}</div>
+<div id="logout"><a href="{{ path('logout') }}">Выйти</a></div>
+<div class="B"></div>
+</div>
+<div class="B"></div>
+</div><!-- #top -->
+
+<div id="menu">
+{% block menu %}
+<a href="{{ path('forms_show') }}">Мои формы</a> &nbsp;→&nbsp; {{ form.name }} &nbsp;→&nbsp; Лиды
+{% endblock %}
+</div>
+
+<div id="content">
+{% block content %}{% endblock %}
+</div><!-- #content -->
+
+</div><!-- .FixWidth -->
+</body>
+</html>

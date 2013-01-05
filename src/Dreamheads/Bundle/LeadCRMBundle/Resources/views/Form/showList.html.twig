@@ -1,0 +1,33 @@
+{% extends 'DreamheadsLeadCRMBundle::base.html.twig' %}
+
+{%block title %}Мои формы{% endblock %}
+
+{% block menu %}
+Мои формы
+{% endblock %}
+
+{% block content %}
+
+<table class="ETable">
+
+<tr><th>Имя</th><th>Поля</th><th colspan="2">Операции</th></tr>
+
+{% for form in forms %}
+<tr>
+<td>{{ form.name }}</td>
+
+<td>
+{% for field in form.fields %}
+{{ field.name }}{% if not loop.last %}<br />{% endif %}
+{% endfor %}
+</td>
+
+<td class="C"><a class="Leads" href="{{ path('leads_show', {'formId': form.id}) }}">Лиды</a></td>
+<td class="C"><a class="Settings" href="{{ path('editForm', {'id': form.id}) }}">Настройки</a></td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

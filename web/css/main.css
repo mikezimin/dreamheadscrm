@@ -1,0 +1,305 @@
+* {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #ffffff;
+	color: #000000;
+	font-family: Arial !important;
+	font-size: 14px;
+}
+
+table {
+	border-collapse: collapse;	
+}
+
+
+.B {
+	clear: both;
+}
+
+big {
+	font-size: 28px;
+}
+
+
+/* --------------------------------------------------------------------------- */
+
+.FixWidth {
+	width: 980px;
+	margin: 0 auto;
+}
+
+#top {
+	padding: 40px 29px 29px 29px;
+}
+
+#logo {
+	width: 201px;
+	float: left;
+}
+
+#auth {
+	width: 721px;
+	float: left;
+}
+
+#username {
+	float: left;
+	width: 639px;
+	text-align: right;
+}
+
+#logout {
+	width: 62px;
+	padding-left: 20px;
+	float: left;
+}
+
+#logout a {
+	color: #000000;
+	background: url(/i/logout.png) no-repeat 0 0;
+	padding-left: 20px;
+}
+
+#menu {
+	padding: 0 29px 29px 29px;
+}
+
+#menu a {
+	color: #000000;
+}
+
+#content {
+	padding: 0 29px 29px 29px;
+}
+
+a.Settings {
+	background: url(/i/settings.png) no-repeat 0 0;
+	padding-left: 20px;
+	color: #000000;
+}
+
+a.Leads {
+	background: url(/i/leads.png) no-repeat 0 0;
+	padding-left: 20px;
+	color: #000000;
+}
+
+/* --------------------------------------------------------------------------- */
+
+.Filters td {
+	padding: 2px 4px 2px 4px;
+}
+
+.Filters {
+	background: #fafafa;
+	padding: 20px;
+	margin: 0 0 20px 0;
+}
+
+.Filters input.Date {
+	padding: 4px 12px 4px 12px;
+	height: 15px;
+	width: 70px;
+	border: 1px solid #eeeeee;
+}
+
+.Filters input.String {
+	padding: 4px 12px 4px 12px;
+	height: 15px;
+	width: 180px;
+	border: 1px solid #eeeeee;
+}
+
+.Filters input.Checkbox {
+	position: relative;
+	top: 1px;
+}
+
+.Filters input.Submit {
+	position: relative;
+	bottom: 1px;
+	padding: 4px 12px 4px 12px;
+	font-size: 14px;
+	border: 1px solid #eeeeee;
+	background: #f6f6f6;
+	box-shadow: 2px 2px 5px #cccccc;
+}
+
+.Params td {
+	padding: 4px 4px 4px 4px;
+}
+
+.Params {
+	background: #fafafa;
+	padding: 20px;
+	margin: 0 0 20px 0;
+}
+
+.Params input.String {
+	padding: 4px 12px 4px 12px;
+	height: 15px;
+	width: 180px;
+	border: 1px solid #eeeeee;
+}
+
+
+.Params input.LongString {
+	width: 500px;
+}
+
+
+.ui-widget * {
+	font-size: 12px !important;
+}
+
+.Comment {
+	width: 200px;
+}
+
+.EData {
+	position: relative;
+}
+
+.ETable {
+	width: 100%;
+}
+
+.ETable td, .ETable th {
+	border: 1px solid #dddddd;
+	font-size: 12px;
+	padding: 4px 12px 4px 12px;
+}
+
+
+.ETable th {
+	background: #fafafa;
+}
+
+.ETable th.Selected {
+	background: #ffffff;
+}
+
+.ETable th a {
+	text-decoration: none;
+	color: #000000;
+}
+
+td.E {
+	cursor: text;
+}
+
+td.Add {
+	padding: 8px 12px 8px 12px;
+}
+
+td.Add a {
+	display: block;
+	width: 100%;
+	color: #000000;
+	text-decoration: none;
+	text-align: center;
+}
+
+td.Add a u {
+	text-decoration: underline;
+	background: url(/i/add.png) no-repeat 0 0;
+	padding-left: 20px; 
+}
+
+.EditField {
+	position: absolute;
+	display: none;
+	border: 0;
+	font-size: 12px;
+	background: #ffffff;
+	padding: 4px 12px 4px 12px;
+}
+
+
+td.C {
+	text-align: center;
+}
+
+
+.ETable tr td {
+	background: #ddffdd;
+}
+
+.ETable tr.Selected td {
+	background: #f9fff9;
+}
+
+.ETable tr.Bad td {
+	background: #ffdddd;
+}
+
+.ETable tr.Bad.Selected td {
+	background: #fff9f9;
+}
+
+
+#filter {
+	font-size: 12px;
+	padding: 0 0 20px 0;
+}
+
+#filter input {
+	border: 1px solid #aaaaaa;
+	width: 80px;
+}
+
+#stat {
+	font-size: 12px;
+	padding: 20px 0 0 0;
+}
+
+.LoginFixWidth {
+	width: 499px;
+	margin: 0 auto;
+}
+
+#login_logo {
+	padding: 100px 0 50px 0;
+}
+
+#login_form {
+
+}
+
+#login_form input {
+	padding: 3px 3px 3px 3px;
+}
+
+#login_form #email {
+	font-size: 18px;
+	padding: 0 0 22px 0;
+}
+
+#login_form #password {
+	font-size: 18px;
+	padding: 0 0 49px 0;
+}
+
+#login_form #email input, #login_form #password input {
+	font-size: 28px;
+	width: 100%;
+	border: 1px solid #9b9b9b;
+}
+
+#login_form #submit {
+	text-align: center;
+}
+
+#login_form #submit input {
+	font-size: 28px;
+	width: 200px;
+	background: #f6f6f6;
+	border: 1px solid #f6f6f6;
+	box-shadow: 2px 2px 5px #cccccc;
+}
+
+

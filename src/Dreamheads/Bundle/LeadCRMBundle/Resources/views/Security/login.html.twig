@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Dreamheads CRM</title>
+<link rel="SHORTCUT ICON" href="" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+<body>
+<div class="LoginFixWidth">
+
+<div id="login_logo">
+<img src="/i/login_logo.png" />
+</div><!-- #login_logo -->
+
+<div id="login_form">
+<form action="{{ path('login_check') }}" method="post">
+
+<div id="email">
+<label>E-mail:</label><br />
+<input type="text" name="_username" value="{{ lastEmail }}" />
+</div>
+
+<div id="password">
+<label>Пароль:</label><br />
+<input type="password" name="_password" />
+</div>
+
+<input type="hidden" name="_target_path" value="{{ path('forms_show') }}" />
+
+<div id="submit">
+<input type="submit" value="Войти" />
+</div>
+
+</form>
+
+{% if error %}
+<div id="error">{{ error.message }}</div>
+{% endif %}
+
+
+</div><!-- #login_form -->
+
+</div><!-- .LoginFixWidth -->
+</body>
+</html>

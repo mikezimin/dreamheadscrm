@@ -1,0 +1,111 @@
+{% extends 'DreamheadsLeadCRMBundle::base.html.twig' %}
+
+{%block title %}Список лидов{% endblock %}
+
+{% block menu %}
+<a href="{{ path('forms_show') }}">Мои формы</a> &nbsp;→&nbsp; {{ form.name }} &nbsp;→&nbsp; Лиды
+{% endblock %}
+
+{% block content %}
+
+<script>
+
+	$.datepicker.regional['ru'] = { 
+		closeText: 'Закрыть', 
+		prevText: '&#x3c;Пред', 
+		nextText: 'След&#x3e;', 
+		currentText: 'Сегодня', 
+		monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь', 
+		'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'], 
+		monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'], 
+		dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'], 
+		dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'], 
+		dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'], 
+		dateFormat: 'dd.mm.yy', 
+		firstDay: 1, 
+		isRTL: false 
+	}; 
+	$.datepicker.setDefaults($.datepicker.regional['ru']); 
+
+	$(function() {
+		$(".Filters .Date").datepicker();	
+	});
+	
+</script>
+
+<div class="Filters">
+<form action="{{ path('leads_show', {formId: form.id}) }}" method="get">
+<input type="hidden" name="order" value="{{ order }}" />
+<input type="hidden" name="orderBy" value="{{ orderBy }}" />
+<table>
+
+<tr><td><input type="checkbox" class="Checkbox" name="filterByText" id="search_checkbox" {{ filterByText is not null ? 'checked="checked"' : '' }} /></td>
+<td><label for="search_checkbox">Искать текст:</label></td>
+<td><input type="string" name="text" class="String" value="{{ text is not null ? text : '' }}" /></td>
+
+<td style="padding-left: 24px"><input type="checkbox" name="filterByDate" class="Checkbox" id="date_checkbox" {{ filterByDate is not null ? 'checked="checked"' : '' }} /></td>
+<td><label for="date_checkbox">Фильтровать по дате:</label></td>
+<td><input type="string" name="from" id="date_from" class="Date" value="{{ from is not null ? from : '' }}" /> — 
+<input type="string" name="to" id="date_to" class="Date" value="{{ to is not null ? to : '' }}" /></td>
+
+<td style="padding-left: 24px"><input type="submit" class="Submit" value="Поиск" /></td></tr>
+</table>
+</form>
+</div><!-- .Filters -->
+
+
+<div class="EData" data-update-url="{{ path('updateLead') }}">
+
+{% set newOrder = order == 'asc' ? 'desc' : 'asc' %}
+
+<table class="ETable">
+<tr>
+{% if orderBy == 'id' %}
+<th class="Selected"><a href="{{ path(currentRoute, params|merge({orderBy: 'id', order: newOrder})) }}">ID {{ order == 'asc' ? '↑' : '↓' }}</a></th>
+{% else %}
+<th><a href="{{ path(currentRoute, params|merge({orderBy: 'id', order: 'asc'})) }}">ID</a></th>
+{% endif %}
+{% if orderBy == 'time' %}
+<th class="Selected"><a href="{{ path(currentRoute, params|merge({orderBy: 'time', order: newOrder})) }}">Время {{ order == 'asc' ? '↑' : '↓' }}</a></th>
+{% else %}
+<th><a href="{{ path(currentRoute, params|merge({orderBy: 'time', order: 'asc'})) }}">Время</a></th>
+{% endif %}
+
+{% for field in fields %}
+<th>{{ field.name }}</th>
+{% endfor %}
+
+<th>Регион</th>
+<th>Не лид</th>
+<th>Комментарий</th>
+</tr>
+
+{% for lead in leads %}
+<tr {% if lead.isBad %}class="Bad"{% endif %}>
+<td class="C">{{ lead.id }}</td>
+<td class="C">{{ lead.time | date('d.m.Y H:i:s') }}</td>
+
+
+{% for field in fields %}
+<td>
+{% for couple in lead.couples %}
+	{% if couple.field == field %}
+		{{ couple.value }}
+	{% endif %}
+{% endfor %}
+</td>
+{% endfor %}
+
+<td>{% if lead.region is not null %}{{ lead.region.name }}{% endif %}</td>
+<td class="EC C" data-cell="{{ lead.id }},isBad" data-checked-row-class="Bad"><input type="checkbox" {% if lead.isBad %}checked="checked"{% endif %} /></td>
+<td class="E" data-cell="{{ lead.id }},comment">{{ lead.comment }}</td>
+
+</tr>
+{% endfor %}
+
+</table>
+
+<input class="EditField" type="text" />
+</div><!-- .EData -->
+
+{% endblock %}

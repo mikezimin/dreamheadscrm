@@ -1,0 +1,90 @@
+{% extends 'DreamheadsLeadCRMBundle::base.html.twig' %}
+
+{%block title %}Настройки формы{% endblock %}
+
+{% block menu %}
+<a href="{{ path('forms_show') }}">Мои формы</a> &nbsp;→&nbsp; {{ form.name }} &nbsp;→&nbsp; Настройки
+{% endblock %}
+
+{% block content %}
+
+
+<div class="Params EParams" data-update-url="{{ path('updateForm', {id: form.id}) }}">
+
+<table>
+
+<tr>
+<td></td>
+<td>Название формы:</td>
+<td><input type="string" name="name" class="E String" value="{{ form.name }}" /></td>
+
+<td></td>
+<td>Название в SMS уведомлении<br />(до 5 символов):</td>
+<td><input type="string" name="smsName" class="E String" value="{{ form.smsName }}" /></td></tr>
+
+<tr>
+<td><input type="checkbox" class="EC Checkbox" name="postMails" id="search_checkbox" {{ form.postMails ? 'checked="checked"' : '' }} /></td>
+<td><label for="search_checkbox">Отправлять новые лиды<br /> на E-mail:</label></td>
+<td><input type="string" name="email" class="E String" value="{{ form.email }}" /></td>
+
+<td style="padding-left: 24px"><input type="checkbox" class="EC Checkbox" name="postSms" class="Checkbox" id="date_checkbox" {{ form.postSms ? 'checked="checked"' : '' }} /></td>
+<td><label for="date_checkbox">Отправлять новые лиды<br />по SMS на телефон:</label></td>
+<td><input type="string" name="phone" class="E String" id="date_from" value="{{ form.phone }}" /></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Текст, если форма<br /> успешно заполнена:</td>
+<td colspan="4"><input type="string" name="successText" class="E String LongString" value="{{ form.successText }}" /></td>
+</tr>
+
+<tr>
+<td></td>
+<td>Текст, если заполнены<br /> не все обязательные поля:</td>
+<td colspan="4"><input type="string" name="failText" class="E String LongString" value="{{ form.failText }}" /></td>
+</tr>
+
+</table>
+</div><!-- .Params -->
+
+
+<div class="EData" data-update-url="{{ path('updateField') }}">
+
+
+<table class="ETable">
+
+<tr>
+<th>HTML name атрибут</th>
+<th>Название</th>
+<th>Название для SMS<br />
+уведомлений<br />
+(до 5 символов)</th>
+<th>Телефон</th>
+<th>Обязательное поле</th>
+</tr>
+
+{% for field in fields %}
+<tr>
+<td class="E" data-cell="{{ field.id }},htmlName">{{ field.htmlName }}</td>
+<td class="E" data-cell="{{ field.id }},name">{{ field.name }}</td>
+<td class="E" data-cell="{{ field.id }},smsName">{{ field.smsName }}</td>
+<td class="EC C" data-cell="{{ field.id }},isPhone"><input type="checkbox" {% if field.isPhone %}checked="checked"{% endif %} /></td>
+<td class="EC C" data-cell="{{ field.id }},isRequired"><input type="checkbox" {% if field.isRequired %}checked="checked"{% endif %} /></td>
+</tr>
+
+{% if loop.last %}
+<!--
+<tr>
+<td class="C Add" colspan="4"><a href="{{ path('addField', {formId: form.id}) }}"><u>Добавить поле</u></a></td>
+</tr>
+-->
+{% endif %}
+
+{% endfor %}
+
+</table>
+
+<input class="EditField" type="text" />
+</div><!-- .EData -->
+
+{% endblock %}
