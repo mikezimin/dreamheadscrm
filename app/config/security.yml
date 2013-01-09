@@ -31,6 +31,7 @@ security:
         
         external:
             pattern: ^/external
+            anonymous: ~
             security: false
         
         login:
