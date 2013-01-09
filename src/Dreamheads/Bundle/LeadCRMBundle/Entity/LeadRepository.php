@@ -33,10 +33,10 @@ class LeadRepository extends EntityRepository
 		return $this;
 	}
 	
-	public function filter($filterByText, $text, $filterByDate, $from, $to, $orderBy, $order) {
+	public function filter($form, $filterByText, $text, $filterByDate, $from, $to, $orderBy, $order) {
 		$em = $this->getEntityManager();
 	
-		$select = "SELECT l FROM DreamheadsLeadCRMBundle:Lead l";
+		$select = "SELECT l FROM DreamheadsLeadCRMBundle:Lead l JOIN DreamheadsLeadCRMBundle:Form f ";
 		
 		if($filterByText) {
 			$join = "JOIN DreamheadsLeadCRMBundle:Couple c";
@@ -55,11 +55,15 @@ class LeadRepository extends EntityRepository
 			$oBy = 'ORDER BY l.id ' . $order;
 		}
 		
+		$where3 = '(l.form = f AND f.id = ' . $form.getId() . ')';
+		
 		if (isset($where1) || isset($where2)) {
 			$where = 'WHERE ' .
 			(isset($where1) ? $where1 : '') .
 			((isset($where1) && isset($where2)) ? ' AND ' : '') .
-			(isset($where2) ? $where2 : '');
+			(isset($where2) ? $where2 : '') .
+			((isset($where1) || isset($where2)) ? ' AND ' : '') .
+			$where3;
 		}
 		
 		$dql =
@@ -69,6 +73,7 @@ class LeadRepository extends EntityRepository
 			(isset($oBy) ? ' ' . $oBy : '');
 		
 		$query = $em->createQuery($dql);
+		
 		$leads = $query->getResult();
 		
 		return $leads;
