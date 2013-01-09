@@ -57,14 +57,12 @@ class LeadRepository extends EntityRepository
 		
 		$where3 = '(l.form = f AND f.id = ' . $form.getId() . ')';
 		
-		if (isset($where1) || isset($where2)) {
-			$where = 'WHERE ' .
+		$where = 'WHERE ' .
 			(isset($where1) ? $where1 : '') .
 			((isset($where1) && isset($where2)) ? ' AND ' : '') .
 			(isset($where2) ? $where2 : '') .
 			((isset($where1) || isset($where2)) ? ' AND ' : '') .
 			$where3;
-		}
 		
 		$dql =
 			$select .
