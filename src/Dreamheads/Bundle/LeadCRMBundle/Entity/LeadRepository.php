@@ -55,7 +55,7 @@ class LeadRepository extends EntityRepository
 			$oBy = 'ORDER BY l.id ' . $order;
 		}
 		
-		$where3 = '(l.form = f AND f.id = ' . $form.getId() . ')';
+		$where3 = '(l.form = f AND f.id = ' . $form->getId() . ')';
 		
 		$where = 'WHERE ' .
 			(isset($where1) ? $where1 : '') .
