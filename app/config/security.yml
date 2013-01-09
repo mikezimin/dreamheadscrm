@@ -28,7 +28,11 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+        
+        external:
+            pattern: ^/external
+            security: false
+        
         login:
             pattern:  ^/login$
             anonymous: ~
