@@ -31,8 +31,7 @@ class LeadController extends Controller
 		$text = $request->query->get('text');
 		
 		$leads = $em->getRepository('DreamheadsLeadCRMBundle:Lead')
-			->filter($filterByText, $text, $filterByDate, $from, $to, $orderBy, $order);
-		
+			->filter($form, $filterByText, $text, $filterByDate, $from, $to, $orderBy, $order);
 		
         return $this->render(
 			'DreamheadsLeadCRMBundle:Lead:showList.html.twig',
